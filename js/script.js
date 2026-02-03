@@ -3,6 +3,7 @@ const todoInput = document.getElementById("todo-input");
 const dateInput = document.getElementById("date-input");
 const todoList = document.getElementById("todo-list");
 const filter = document.getElementById("filter");
+const deleteAllBtn = document.getElementById("delete-all");
 
 let todos = [];
 
@@ -10,47 +11,60 @@ form.addEventListener("submit", function (e) {
   e.preventDefault();
 
   if (todoInput.value === "" || dateInput.value === "") {
-    alert("Please fill in all fields!");
+    alert("Please fill all fields!");
     return;
   }
 
-  const todo = {
+  todos.push({
     text: todoInput.value,
-    date: dateInput.value
-  };
+    date: dateInput.value,
+    status: "Pending"
+  });
 
-  todos.push(todo);
   todoInput.value = "";
   dateInput.value = "";
 
-  displayTodos();
+  renderTodos();
 });
 
-filter.addEventListener("change", displayTodos);
+filter.addEventListener("change", renderTodos);
 
-function displayTodos() {
+deleteAllBtn.addEventListener("click", function () {
+  todos = [];
+  renderTodos();
+});
+
+function renderTodos() {
   todoList.innerHTML = "";
+
+  if (todos.length === 0) {
+    todoList.innerHTML = `
+      <tr>
+        <td colspan="4" class="empty">No task found</td>
+      </tr>
+    `;
+    return;
+  }
 
   const today = new Date().toISOString().split("T")[0];
 
   todos.forEach((todo, index) => {
     if (filter.value === "today" && todo.date !== today) return;
 
-    const li = document.createElement("li");
-
-    li.innerHTML = `
-      <div>
-        <strong>${todo.text}</strong><br>
-        <span>${todo.date}</span>
-      </div>
-      <button class="delete-btn" onclick="deleteTodo(${index})">Delete</button>
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${todo.text}</td>
+      <td>${todo.date}</td>
+      <td><span class="status">${todo.status}</span></td>
+      <td>
+        <button class="delete" onclick="deleteTodo(${index})">Delete</button>
+      </td>
     `;
-
-    todoList.appendChild(li);
+    todoList.appendChild(row);
   });
 }
 
 function deleteTodo(index) {
   todos.splice(index, 1);
-  displayTodos();
+  renderTodos();
 }

@@ -1,61 +1,103 @@
-body {
+* {
+  box-sizing: border-box;
   font-family: Arial, sans-serif;
-  background-color: #f4f6f8;
+}
+
+body {
+  background: linear-gradient(135deg, #0f172a, #020617);
+  min-height: 100vh;
   display: flex;
   justify-content: center;
-  margin-top: 50px;
-}
-
-.container {
-  background: white;
-  padding: 20px;
-  width: 350px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
-h1 {
-  text-align: center;
-}
-
-form {
-  display: flex;
-  gap: 5px;
-  margin-bottom: 10px;
-}
-
-input, button, select {
-  padding: 8px;
-  font-size: 14px;
-}
-
-button {
-  cursor: pointer;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-}
-
-li {
-  background: #eaeaea;
-  margin-bottom: 5px;
-  padding: 8px;
-  display: flex;
-  justify-content: space-between;
   align-items: center;
 }
 
-li span {
-  font-size: 12px;
-  color: #555;
+.card {
+  background: #1e293b;
+  color: white;
+  padding: 20px;
+  width: 520px;
+  border-radius: 10px;
 }
 
-.delete-btn {
-  background: red;
+h2 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.form {
+  display: flex;
+  gap: 8px;
+}
+
+input, select {
+  padding: 8px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+}
+
+input {
+  flex: 1;
+}
+
+.btn {
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add {
+  background: #6366f1;
+  color: white;
+}
+
+.danger {
+  background: #ef4444;
+  color: white;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin: 12px 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #0f172a;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background: #020617;
+}
+
+.status {
+  background: #22c55e;
+  color: black;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+.delete {
+  background: #ef4444;
   color: white;
   border: none;
   padding: 5px 8px;
+  border-radius: 5px;
   cursor: pointer;
+}
+
+.empty {
+  padding: 15px;
+  color: #94a3b8;
 }
